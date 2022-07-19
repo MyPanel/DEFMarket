@@ -7,6 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 public class DefMarketApplication {
 
@@ -15,5 +18,7 @@ public class DefMarketApplication {
     public static void main(String[] args) {
         ApplicationContext cx = SpringApplication.run(DefMarketApplication.class, args);
         LOGGER.info("LOGGER TEST");
+        String[] beanDefinitionNames = cx.getBeanDefinitionNames();
+        LOGGER.info(Arrays.toString(beanDefinitionNames));
     }
 }

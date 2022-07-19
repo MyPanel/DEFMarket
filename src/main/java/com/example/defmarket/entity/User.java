@@ -15,9 +15,9 @@ import java.sql.Timestamp;
 uniqueConstraints = {
         @UniqueConstraint(name = "constraintName",
         columnNames = {
-                "user_email",
-                "user_nickname",
-                "user_phoneNumber"})
+                "userEmail",
+                "userNickName",
+                "userPhoneNumber"})
 })
 @DynamicInsert // Insert 구문에 null 값을 삽입할 경우 해당 칼럼은 제외하고 Insert 구문 생성
 @DynamicUpdate // 동일하게 갱신 진행
@@ -25,43 +25,43 @@ public class User {
 
     @Id
     @GeneratedValue(generator = "DEF_SEQ")
-    private int user_id;
+    private int userId;
 
     @Column(nullable = false)
-    private String user_email;
+    private String userEmail;
 
     @Column(nullable = false)
-    private String user_password;
+    private String userPassword;
 
     @Column(nullable = false)
-    private String user_name;
+    private String userName;
 
-    private String user_nickname;
-    private Integer user_age;
-    private String user_gender;
-    private String user_address;
-    private String user_postNumber;
-    private String user_grade;
-    private Timestamp user_birthday;
+    private String userNickName;
+    private Integer userAge;
+    private String userGender;
+    private String userAddress;
+    private String userPostNumber;
+    private String userGrade;
+    private Timestamp userBirthday;
 
     @Column(columnDefinition = "number(10,0) default 0")
-    private Integer user_point;
-    private String user_phoneNumber;
-    private Integer user_footBallCheck;
-    private Integer user_footSize;
+    private Integer userPoint;
+    private String userPhoneNumber;
+    private Integer userFootBallCheck;
+    private Integer userFootSize;
 
     @Column(columnDefinition = "varchar2(255 char) default '0'")
-    private String user_flatFeetCheck;
-    private Integer user_type;
-    private String login_type;
-    private Integer user_status;
-    private Timestamp delete_date;
-    private Timestamp disable_date;
+    private String userFlatFeetCheck;
+    private Integer userType;
+    private String loginType;
+    private Integer userStatus;
+    private Timestamp deleteDate;
+    private Timestamp disableDate;
 
     public User() {}
-    public User(String user_name, String user_email, String user_password) {
-        this.user_name = user_name;
-        this.user_email = user_email;
-        this.user_password = user_password;
+    public User(String userName, String userEmail, String userPassword) {
+        this.userName = userName;
+        this.userEmail = userEmail;
+        this.userPassword = userPassword;
     }
 }

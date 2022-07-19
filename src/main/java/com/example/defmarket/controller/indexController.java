@@ -4,7 +4,6 @@ import com.example.defmarket.entity.User;
 import com.example.defmarket.services.UserServiceImple;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,14 +16,19 @@ public class indexController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(indexController.class);
 
-    @Autowired
-    UserServiceImple userServiceImple;
+
+    private final UserServiceImple userServiceImple;
 
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+
+    public indexController(UserServiceImple userServiceImple) {
+        this.userServiceImple = userServiceImple;
+    }
 
     @RequestMapping(value = "/")
     public String main() {
         LOGGER.info("메인 페이지 이동");
+
         return "main";
     }
 
@@ -45,9 +49,10 @@ public class indexController {
                     bCryptPasswordEncoder.encode(request.getParameter("user_password"))
             );
             userServiceImple.signupUserDB(user);
+            LOGGER.info(request.getSession().getId());
             LOGGER.info("데이터 전달 테스트");
 //            userService.signup(user);
-            return "redirect:/";
+            return "main";
         } else {
             return "redirect:/login";
         }
